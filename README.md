@@ -29,6 +29,7 @@ Em andamento
 Concluídas
 
 🧱 Estrutura do Projeto
+
 O projeto segue os princípios da Programação Orientada a Objetos, com as seguintes classes principais:
 
 Classe	Descrição
