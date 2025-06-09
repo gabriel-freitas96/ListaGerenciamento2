@@ -1,8 +1,11 @@
 📋 Sistema de Gerenciamento de Atividades
+
 📌 Descrição do Projeto
+
 Este é um projeto de estudo em Programação Orientada a Objetos (POO) utilizando a linguagem Java. O sistema permite gerenciar tarefas atribuídas a usuários, com funcionalidades como adicionar, atualizar, iniciar, finalizar, pesquisar e listar atividades com ou sem prazo.
 
 💡 Funcionalidades
+
 ✅ Adicionar nova atividade
 
 🔍 Pesquisar atividade pelo título
