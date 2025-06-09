@@ -53,7 +53,7 @@ Clone o repositório:
 bash
 Copiar
 Editar
-git clone https://github.com/seuusuario/nome-do-repo.git
+git clone (https://github.com/gabriel-freitas96/ListaGerenciamento2.git)
 Abra o projeto com sua IDE Java favorita.
 
 Compile e execute a classe Main.
