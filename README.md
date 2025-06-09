@@ -1,10 +1,8 @@
-# 📋 Sistema de Gerenciamento de Atividades
+📋 Sistema de Gerenciamento de Atividades
+📌 Descrição do Projeto
+Este é um projeto de estudo em Programação Orientada a Objetos (POO) utilizando a linguagem Java. O sistema permite gerenciar tarefas atribuídas a usuários, com funcionalidades como adicionar, atualizar, iniciar, finalizar, pesquisar e listar atividades com ou sem prazo.
 
-## 📌 Descrição do Projeto
-
-Este é um projeto de estudo em Programação Orientada a Objetos (POO) em Java. O sistema permite gerenciar tarefas atribuídas a usuários, com funcionalidades como adicionar, atualizar, iniciar, finalizar, pesquisar e listar atividades com ou sem prazo.
-
-##💡 Funcionalidades
+💡 Funcionalidades
 ✅ Adicionar nova atividade
 
 🔍 Pesquisar atividade pelo título
@@ -17,48 +15,48 @@ Este é um projeto de estudo em Programação Orientada a Objetos (POO) em Java.
 
 ⏹ Finalizar atividade
 
-📋 Listar atividades com filtros de status
+📋 Listar atividades com filtros de status:
 
-.Todas
+Todas
 
-.Pendentes
+Pendentes
 
-.Em andamento
+Em andamento
 
-.Concluídas
+Concluídas
 
-##🧱 Estrutura do Projeto
+🧱 Estrutura do Projeto
 O projeto segue os princípios da Programação Orientada a Objetos, com as seguintes classes principais:
 
 Classe	Descrição
-Main	Classe principal com o menu de interação.
-Atividade	Classe abstrata que define os atributos e comportamentos básicos de uma tarefa.
+Main	Classe principal com o menu de interação via console.
+Atividade	Classe abstrata que define os atributos e comportamentos básicos.
 TarefaSimples	Subclasse de Atividade para tarefas sem prazo.
 TarefaComPrazo	Subclasse de Atividade com data limite e verificação de atraso.
-Usuario	Representa o responsável por uma atividade.
+Usuario	Representa o responsável pela atividade.
 StatusAtividade	Enum com os status possíveis: PENDENTE, EM_ANDAMENTO, CONCLUIDA.
 
-##🛠️ Tecnologias Utilizadas
+🛠️ Tecnologias Utilizadas
 Linguagem: Java
 
-IDE recomendada: Eclipse, IntelliJ IDEA ou VS Code com Extensões Java
+Versão recomendada: Java 8 ou superior
 
-Java versão: Java 8 ou superior
+IDE: Eclipse, IntelliJ IDEA ou VS Code com extensões Java
 
-##▶️ Como Executar
+▶️ Como Executar
 Clone o repositório:
 
 bash
 Copiar
 Editar
 git clone https://github.com/seuusuario/nome-do-repo.git
-Navegue até a pasta do projeto e abra com sua IDE Java.
+Abra o projeto com sua IDE Java favorita.
 
 Compile e execute a classe Main.
 
-Utilize o menu interativo para gerenciar atividades.
+Utilize o menu interativo exibido no console para gerenciar atividades.
 
-##📌 Exemplo de Uso
+📌 Exemplo de Uso
 bash
 Copiar
 Editar
@@ -71,24 +69,32 @@ Escolha uma opção: 1
 Digite o título da atividade: Estudar POO
 ...
 Atividade adicionada com sucesso!
-##📚 Conceitos Aplicados
-Abstração
+📚 Conceitos Aplicados
+✅ Abstração
 
-Herança
+✅ Herança
 
-Polimorfismo
+✅ Polimorfismo
 
-Encapsulamento
+✅ Encapsulamento
 
-Manipulação de listas (ArrayList)
+✅ Manipulação de listas (ArrayList)
 
-Uso de enums
+✅ Uso de enums
 
-Tratamento de exceções (try-catch)
+✅ Tratamento de exceções (try-catch)
 
-Interação com o usuário via console
+✅ Interação com o usuário via console
 
-##👨‍💻 Autor
-Desenvolvido pelo grupo [Gabriel Lacerda,Miguel Vianna,Samires do Carmo,Erick Monteiro]
+👨‍💻 Autores
+Desenvolvido pelo grupo:
 
-Projeto acadêmico para fins de aprendizado em Java/POO
+Gabriel Lacerda
+
+Miguel Vianna
+
+Samires do Carmo
+
+Erick Monteiro
+
+Projeto acadêmico para fins de aprendizado em Java e Programação Orientada a Objetos (POO).
