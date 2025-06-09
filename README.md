@@ -4,7 +4,7 @@
 
 Este é um projeto de estudo em Programação Orientada a Objetos (POO) em Java. O sistema permite gerenciar tarefas atribuídas a usuários, com funcionalidades como adicionar, atualizar, iniciar, finalizar, pesquisar e listar atividades com ou sem prazo.
 
-💡 Funcionalidades
+##💡 Funcionalidades
 ✅ Adicionar nova atividade
 
 🔍 Pesquisar atividade pelo título
@@ -19,15 +19,15 @@ Este é um projeto de estudo em Programação Orientada a Objetos (POO) em Java.
 
 📋 Listar atividades com filtros de status
 
-Todas
+.Todas
 
-Pendentes
+.Pendentes
 
-Em andamento
+.Em andamento
 
-Concluídas
+.Concluídas
 
-🧱 Estrutura do Projeto
+##🧱 Estrutura do Projeto
 O projeto segue os princípios da Programação Orientada a Objetos, com as seguintes classes principais:
 
 Classe	Descrição
@@ -38,14 +38,14 @@ TarefaComPrazo	Subclasse de Atividade com data limite e verificação de atraso.
 Usuario	Representa o responsável por uma atividade.
 StatusAtividade	Enum com os status possíveis: PENDENTE, EM_ANDAMENTO, CONCLUIDA.
 
-🛠️ Tecnologias Utilizadas
+##🛠️ Tecnologias Utilizadas
 Linguagem: Java
 
 IDE recomendada: Eclipse, IntelliJ IDEA ou VS Code com Extensões Java
 
 Java versão: Java 8 ou superior
 
-▶️ Como Executar
+##▶️ Como Executar
 Clone o repositório:
 
 bash
@@ -58,7 +58,7 @@ Compile e execute a classe Main.
 
 Utilize o menu interativo para gerenciar atividades.
 
-📌 Exemplo de Uso
+##📌 Exemplo de Uso
 bash
 Copiar
 Editar
@@ -71,7 +71,7 @@ Escolha uma opção: 1
 Digite o título da atividade: Estudar POO
 ...
 Atividade adicionada com sucesso!
-📚 Conceitos Aplicados
+##📚 Conceitos Aplicados
 Abstração
 
 Herança
@@ -88,7 +88,7 @@ Tratamento de exceções (try-catch)
 
 Interação com o usuário via console
 
-👨‍💻 Autor
+##👨‍💻 Autor
 Desenvolvido pelo grupo [Gabriel Lacerda,Miguel Vianna,Samires do Carmo,Erick Monteiro]
 
 Projeto acadêmico para fins de aprendizado em Java/POO
