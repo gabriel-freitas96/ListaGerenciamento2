@@ -12,14 +12,6 @@ public abstract class Tarefa {
 		this.usuarioResponsavel = usuarioResponsavel;
 		this.status = StatusTarefa.PENDENTE;
 	}
-
-	@Override
-	public String toString() {
-		return  "Atividade [titulo=" + titulo + ", descricao=" + descricao + 
-	               ", usuarioResponsavel=" + usuarioResponsavel.getNome() + 
-	               ", status=" + status + "]";
-	}
-
 	public Usuario getUsuarioResponsavel() {
 		return usuarioResponsavel;
 	}
