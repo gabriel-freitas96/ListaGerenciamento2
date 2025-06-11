@@ -30,7 +30,7 @@ public class Main {
             sc.nextLine();
             switch(opcao) {
             
-            case 1: {
+           case 1: {
             	System.out.println("Digite o título da atividade: ");
             	String titulo = sc.nextLine();
 
@@ -45,10 +45,16 @@ public class Main {
 
             	Usuario usuario = new Usuario(nome, email);
             	dados.adicionarUsuario(usuario);
-
-            	System.out.println("A atividade possui prazo? (s/n): ");
-            	String temPrazo = sc.nextLine();
-
+            	String temPrazo;
+            	while (true) {
+                    System.out.println("A atividade possui prazo? (s/n): ");
+                    temPrazo = sc.nextLine().trim().toLowerCase();
+                    if (temPrazo.equals("s") || temPrazo.equals("n")) {
+                        break;
+                    } else {
+                        System.out.println("Entrada inválida. Por favor, digite 's' para sim ou 'n' para não.");
+                    }
+                }
             	Tarefa novaAtividade;
 
             	if (temPrazo.equalsIgnoreCase("s")) {
