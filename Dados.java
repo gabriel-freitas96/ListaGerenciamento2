@@ -33,7 +33,7 @@ public class Dados {
 	public Boolean excluirTarefa(String titulo) {
 		for(Tarefa tarefa : tarefas) {
 			if(tarefa.getTitulo().equals(titulo)) {
-				tarefas.remove(tarefa);
+				atividades.remove(tarefa);
 				return true;
 			}
 		}
@@ -61,12 +61,13 @@ public class Dados {
 			System.out.println("Nenhuma atividade encontrada para o usuário: " + nomeUsuario);
 		}
 	}
-	public void buscarPorTitulo(String titulo) {
-		for (Tarefa atividade : atividades) {
-			if (atividade.getTitulo().equalsIgnoreCase(titulo)) {
-				atividade.exibirDetalhes();
-				return;
+	public Boolean buscarPeloTitulo(String titulo) {
+		for(Tarefa tarefa : tarefas) {
+			if(tarefa.getTitulo().equals(titulo)) {
+				return true;
+				}
 			}
+				return false;
 		}
-	}
+
 }
