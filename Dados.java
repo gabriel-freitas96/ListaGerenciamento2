@@ -40,7 +40,7 @@ public class Dados {
 		return false;
 	}
 
-	public boolean IniciarTarefa(String titulo) {
+	public boolean iniciarTarefa(String titulo) {
 		for(Tarefa tarefa: atividades) {
 			if(tarefa.getTitulo().equalsIgnoreCase(titulo)) {
 				tarefa.setStatus(Status.EM_ANDAMENTO);
@@ -50,7 +50,7 @@ public class Dados {
 		return false;
 	}
 
-	public boolean FinalizarTarefa(String titulo) {
+	public boolean finalizarTarefa(String titulo) {
 		for(Tarefa tarefa: atividades) {
 			if(tarefa.getTitulo().equalsIgnoreCase(titulo)) {
 				tarefa.setStatus(Status.CONCLUIDA);
