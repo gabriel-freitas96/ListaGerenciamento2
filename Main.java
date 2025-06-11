@@ -2,6 +2,7 @@ package br.com.maisunifacisa;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,24 +27,43 @@ public class Main {
             System.out.println("8. (Sair) 🚪 ");
             System.out.print("Escolha uma opção: ");
 
-            int opcao = sc.nextInt();
-            sc.nextLine(); // Limpa o buffer
+            int opcao = -1;
+            try {
+                opcao = sc.nextInt();
+                sc.nextLine(); // Limpa o buffer
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, digite um número.");
+                sc.nextLine();
+                continue;
+            }
 
             switch (opcao) {
 
                 case 1: {
                     // Adição de nova tarefa
                     System.out.println("Digite o título da atividade: ");
-                    String titulo = sc.nextLine();
+                    String titulo = sc.nextLine().trim();
+                    if (titulo.isEmpty()) {
+                        System.out.println("Título não pode estar vazio.");
+                        break;
+                    }
 
                     System.out.println("Digite a descrição da atividade: ");
-                    String descricao = sc.nextLine();
+                    String descricao = sc.nextLine().trim();
+                    if (descricao.isEmpty()) {
+                        System.out.println("Descrição não pode estar vazia.");
+                        break;
+                    }
 
                     System.out.println("Digite o nome do responsável pela atividade: ");
-                    String nome = sc.nextLine();
+                    String nome = sc.nextLine().trim();
 
                     System.out.println("Digite o e-mail do responsável pela atividade: ");
-                    String email = sc.nextLine();
+                    String email = sc.nextLine().trim();
+                    if (email.isEmpty()) {
+                        System.out.println("E-mail não pode estar vazio.");
+                        break;
+                    }
 
                     Usuario usuario = new Usuario(nome, email);
                     dados.adicionarUsuario(usuario);
@@ -81,10 +101,10 @@ public class Main {
                 case 2: {
                     // Pesquisa por título
                     System.out.println("Digite o título da atividade que deseja pesquisar: ");
-                    String tituloPesquisa = sc.nextLine();
+                    String tituloPesquisa = sc.nextLine().trim();
                     boolean encontrado = false;
                     for (Tarefa atividade : dados.getAtividades()) {
-                        if (atividade.getTitulo().trim().equalsIgnoreCase(tituloPesquisa.trim())) {
+                        if (atividade.getTitulo().trim().equalsIgnoreCase(tituloPesquisa)) {
                             System.out.println("-------------------------------");
                             System.out.println("Atividade encontrada:");
                             atividade.exibirDetalhes();
@@ -101,13 +121,15 @@ public class Main {
                 case 3: {
                     // Exclusão de tarefa
                     System.out.println("Digite o título da atividade que deseja excluir: ");
-                    String tituloExclusao = sc.nextLine();
+                    String tituloExclusao = sc.nextLine().trim();
                     if (dados.getAtividades().isEmpty()) {
                         System.out.println("Lista de tarefas vazia.");
                     } else {
                         if (dados.buscarPeloTitulo(tituloExclusao)) {
                             System.out.println("Tarefa encontrada. Excluindo...");
                             dados.excluirTarefa(tituloExclusao);
+                        } else {
+                            System.out.println("Tarefa não encontrada. Nenhuma exclusão realizada.");
                         }
                     }
                     break;
@@ -116,10 +138,10 @@ public class Main {
                 case 4: {
                     // Atualização de tarefa
                     System.out.println("Digite o título da atividade que deseja atualizar: ");
-                    String tituloAtualizacao = sc.nextLine();
+                    String tituloAtualizacao = sc.nextLine().trim();
                     boolean encontrado = false;
                     for (Tarefa atividade : dados.getAtividades()) {
-                        if (atividade.getTitulo().equalsIgnoreCase(tituloAtualizacao)) {
+                        if (atividade.getTitulo().trim().equalsIgnoreCase(tituloAtualizacao)) {
                             System.out.println("Atividade encontrada:");
                             System.out.println("Digite o novo título da atividade: ");
                             String novoTitulo = sc.nextLine();
@@ -152,11 +174,13 @@ public class Main {
                 case 5: {
                     // Iniciar tarefa
                     System.out.println("Digite o título da tarefa para iniciá-la: ");
-                    String tituloIniciar = sc.nextLine();
+                    String tituloIniciar = sc.nextLine().trim();
                     if (dados.getAtividades().isEmpty()) {
                         System.out.println("Lista sem tarefas.");
                     } else if (dados.buscarPeloTitulo(tituloIniciar)) {
                         dados.iniciarTarefa(tituloIniciar);
+                    } else {
+                        System.out.println("Tarefa não encontrada.");
                     }
                     break;
                 }
@@ -164,11 +188,13 @@ public class Main {
                 case 6: {
                     // Finalizar tarefa
                     System.out.println("Digite o título da tarefa para concluí-la: ");
-                    String tituloFinalizar = sc.nextLine();
+                    String tituloFinalizar = sc.nextLine().trim();
                     if (dados.getAtividades().isEmpty()) {
                         System.out.println("Lista sem tarefas.");
                     } else if (dados.buscarPeloTitulo(tituloFinalizar)) {
                         dados.finalizarTarefa(tituloFinalizar);
+                    } else {
+                        System.out.println("Tarefa não encontrada.");
                     }
                     break;
                 }
@@ -183,8 +209,17 @@ public class Main {
                         System.out.println("4 - Listar Apenas Concluídas");
                         System.out.println("5 - Voltar ao Menu Principal");
                         System.out.print("Escolha uma opção: ");
-                        int opcaoListar = sc.nextInt();
-                        sc.nextLine();
+
+                        int opcaoListar = -1;
+                        try {
+                            opcaoListar = sc.nextInt();
+                            sc.nextLine();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Entrada inválida. Digite um número.");
+                            sc.nextLine();
+                            continue;
+                        }
+
                         if (opcaoListar == 5) break;
 
                         boolean encontrou = false;
