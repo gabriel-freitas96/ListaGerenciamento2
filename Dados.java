@@ -31,7 +31,7 @@ public class Dados {
 
 	}
 	public Boolean excluirTarefa(String titulo) {
-		for(Tarefa tarefa : tarefas) {
+		for(Tarefa tarefa : atividades) {
 			if(tarefa.getTitulo().equals(titulo)) {
 				atividades.remove(tarefa);
 				return true;
@@ -62,7 +62,7 @@ public class Dados {
 		}
 	}
 	public Boolean buscarPeloTitulo(String titulo) {
-		for(Tarefa tarefa : tarefas) {
+		for(Tarefa tarefa : atividades) {
 			if(tarefa.getTitulo().equals(titulo)) {
 				return true;
 				}
