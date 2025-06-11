@@ -156,7 +156,7 @@ public class Main {
                     if (dados.getAtividades().isEmpty()) {
                         System.out.println("Lista sem tarefas.");
                     } else if (dados.buscarPeloTitulo(tituloIniciar)) {
-                        dados.IniciarTarefa(tituloIniciar);
+                        dados.iniciarTarefa(tituloIniciar);
                     }
                     break;
                 }
@@ -168,7 +168,7 @@ public class Main {
                     if (dados.getAtividades().isEmpty()) {
                         System.out.println("Lista sem tarefas.");
                     } else if (dados.buscarPeloTitulo(tituloFinalizar)) {
-                        dados.FinalizarTarefa(tituloFinalizar);
+                        dados.finalizarTarefa(tituloFinalizar);
                     }
                     break;
                 }
