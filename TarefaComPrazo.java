@@ -34,8 +34,4 @@ public class TarefaComPrazo extends Tarefa {
 		System.out.println("-----------------------------");
 		
 	}
-	@Override
-	public String toString() {
-		return "TarefaComPrazo [prazo=" + prazo + "]";
-	}
 }
