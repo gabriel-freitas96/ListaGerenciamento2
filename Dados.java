@@ -30,9 +30,16 @@ public class Dados {
 		usuarios.add(usuario);
 
 	}
-	public void removerAtividade(Tarefa atividade) {
-		atividades.remove(atividade);
+	public Boolean excluirTarefa(String titulo) {
+		for(Tarefa tarefa : tarefas) {
+			if(tarefa.getTitulo().equals(titulo)) {
+				tarefas.remove(tarefa);
+				return true;
+			}
+		}
+		return false;
 	}
+	
 	public void exibirAtividades() {
 		if (atividades.isEmpty()) {
 			System.out.println("Nenhuma atividade cadastrada.");
