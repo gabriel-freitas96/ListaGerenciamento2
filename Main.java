@@ -191,20 +191,20 @@ public class Main {
 
 			        for (Tarefa atividade : dados.getAtividades()) {
 			            boolean exibir = false;
-			            Status status = atividade.getStatus();
+			            StatusTarefa status = atividade.getStatus();
 
 			            switch (opcaoListar) {
 			                case 1:
 			                    exibir = true;
 			                    break;
 			                case 2:
-			                    exibir = status == Status.PENDENTE;
+			                    exibir = status == StatusTarefa.PENDENTE;
 			                    break;
 			                case 3:
-			                    exibir = status == Status.EM_ANDAMENTO;
+			                    exibir = status == StatusTarefa.EM_ANDAMENTO;
 			                    break;
 			                case 4:
-			                    exibir = status == Status.CONCLUIDA;
+			                    exibir = status == StatusTarefa.CONCLUIDA;
 			                    break;
 			                default:
 			                    System.out.println("Opção inválida.");
