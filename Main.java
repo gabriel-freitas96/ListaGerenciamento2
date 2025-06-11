@@ -12,20 +12,20 @@ public class Main {
 		Scanner sc= new Scanner(System.in);
 		Dados dados = new Dados();
 		
-		
-		
 		boolean rodando = true;
 		while(rodando) {
+			
 			System.out.println("\n----- Sistema de Gerenciamento de Atividades -----");
-			System.out.println("1. Adicionar(✅)Nova Atividade ");
-			System.out.println("2. Pesquisar(🔍)Tarefa");
-            System.out.println("3. Excluir(❌)Tarefa");
-            System.out.println("4. Atualizar(✏️)Tarefa");
-            System.out.println("5. Iniciar(▶️)Tarefa");
-            System.out.println("6. Finalizar(✅)Tarefa");
-            System.out.println("7. Listar(📄)Tarefas");
-            System.out.println("8. Sair(🚪)");
+			System.out.println("1. (Adicionar) ✅ Nova Tarefa ");
+			System.out.println("2. (Pesquisar) 🔍 Tarefa");
+            System.out.println("3. (Excluir) ❌ Tarefa");
+            System.out.println("4. (Atualizar) ✏️ Tarefa");
+            System.out.println("5. (Iniciar) ▶️ Tarefa");
+            System.out.println("6. (Finalizar) ✅ Tarefa");
+            System.out.println("7. (Listar) 📄 Tarefas");
+            System.out.println("8. (Sair) 🚪 ");
             System.out.print("Escolha uma opção: ");
+            
             int opcao=sc.nextInt();
             sc.nextLine();
             switch(opcao) {
@@ -94,21 +94,17 @@ public class Main {
             case 3: {
             	System.out.println("Digite o título da atividade que deseja excluir: ");
             	String tituloExclusao = sc.nextLine();
-            	boolean encontrado = false;
-            	List<Tarefa> atividades = dados.getAtividades();
-            	for (int i = 0; i < atividades.size(); i++) {
-            	    Tarefa atividade = atividades.get(i);
-            	    if (atividade.getTitulo().trim().equalsIgnoreCase(tituloExclusao.trim())) {
-            	        atividades.remove(i);
-            	        System.out.println("Atividade excluída com sucesso!");
-            	        encontrado = true;
-            	        break;
-					}
-				}
-            	if (!encontrado) {
-            		System.out.println("Nenhuma atividade encontrada com o título: " + tituloExclusao);
+            	if(dados.getAtividades().isEmpty()) {
+            		System.out.println("Lista de tarefas vazia.");
+            		}
+            	else {
+            		if(dados.buscarPeloTitulo(tituloExclusao)) {
+            			System.out.println("Tarefa encontrada.Tarefa excluindo...");
+            			dados.excluirTarefa(tituloExclusao);
+            		}
             	}
             	break;
+            	
             }
             case 4: {
 				System.out.println("Digite o título da atividade que deseja atualizar: ");
@@ -149,53 +145,35 @@ public class Main {
 				}
 				break;	
 				}
-            case 5: {
-            	System.out.println("Digite o título da atividade que deseja iniciar: ");
-            	String tituloIniciar = sc.nextLine();
-            	boolean encontrado = false;
-            	for (Tarefa atividade : dados.getAtividades()) {
-					if (atividade.getTitulo().equalsIgnoreCase(tituloIniciar)) {
-						encontrado = true;
-						if (atividade.getStatus() == StatusTarefa.PENDENTE) {
-							atividade.setStatus(StatusTarefa.EM_ANDAMENTO);
-							System.out.println("Atividade iniciada com sucesso!");
-						} else if (atividade.getStatus() == StatusTarefa.EM_ANDAMENTO) {
-			                System.out.println("A atividade já está em andamento.");
-			            } else if (atividade.getStatus() == StatusTarefa.CONCLUIDA) {
-			                System.out.println("A atividade já foi concluída e não pode ser reiniciada.");
-			            }
-					break;
-					 }
-                }
-
-                if (!encontrado) {
-                    System.out.println("Nenhuma atividade encontrada com o título: " + tituloIniciar);
-                }
-                break;
-            }
-            case 6: {
-				System.out.println("Digite o título da atividade que deseja finalizar: ");
-				String tituloFinalizar = sc.nextLine();
-				boolean encontrado = false;
-				for (Tarefa atividade : dados.getAtividades()) {
-					if (atividade.getTitulo().equalsIgnoreCase(tituloFinalizar)) {
-			            if (atividade.getStatus() == StatusTarefa.EM_ANDAMENTO) {
-			                atividade.setStatus(StatusTarefa.CONCLUIDA);
-			                System.out.println("Atividade finalizada com sucesso!");
-			            } else if (atividade.getStatus() == StatusTarefa.PENDENTE) {
-			                System.out.println("A atividade ainda está pendente. Inicie antes de finalizar.");
-			            } else if (atividade.getStatus() == StatusTarefa.CONCLUIDA) {
-			                System.out.println("A atividade já está concluída.");
-			            }
-			            encontrado = true;
-			            break;
-			        }
-			    }
-				if (!encontrado) {
-			        System.out.println("Tarefa não encontrada.");
-			    }
-			    break;
+            case 5:{
+            	System.out.println("Digite o título da tarefa para iniciá-la: ");
+				String tituloIniciar = sc.nextLine();
+				if(dados.getAtividades().isEmpty()) {
+					System.out.println("Lista sem tarefas.");
+					}
+				else {
+					if(dados.buscarPeloTitulo(tituloIniciar)) {
+						System.out.println("Tarefa iniciando...");
+						dados.IniciarTarefa(tituloIniciar);
+					}
+				}
+			break;
 			}
+            case 6:{
+				System.out.println("Digite o título da tarefa para concluí-la: ");
+				String tituloFinalizar = sc.nextLine();
+				if(dados.getAtividades().isEmpty()) {
+					System.out.println("Lista sem tarefas.");
+					}
+				else {
+					if(dados.buscarPeloTitulo(tituloFinalizar)) {
+						System.out.println("Tarefa Finalizando...");
+						dados.FinalizarTarefa(tituloFinalizar);
+					}
+				}
+			break;
+			}
+		
 			case 7: {
 			    while (true) {
 			        System.out.println("\n--- Submenu de Listagem ---");
@@ -213,20 +191,20 @@ public class Main {
 
 			        for (Tarefa atividade : dados.getAtividades()) {
 			            boolean exibir = false;
-			            StatusTarefa status = atividade.getStatus();
+			            Status status = atividade.getStatus();
 
 			            switch (opcaoListar) {
 			                case 1:
 			                    exibir = true;
 			                    break;
 			                case 2:
-			                    exibir = status == StatusTarefa.PENDENTE;
+			                    exibir = status == Status.PENDENTE;
 			                    break;
 			                case 3:
-			                    exibir = status == StatusTarefa.EM_ANDAMENTO;
+			                    exibir = status == Status.EM_ANDAMENTO;
 			                    break;
 			                case 4:
-			                    exibir = status == StatusTarefa.CONCLUIDA;
+			                    exibir = status == Status.CONCLUIDA;
 			                    break;
 			                default:
 			                    System.out.println("Opção inválida.");
