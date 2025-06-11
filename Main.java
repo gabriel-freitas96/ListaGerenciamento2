@@ -179,6 +179,7 @@ public class Main {
                         System.out.println("Lista sem tarefas.");
                     } else if (dados.buscarPeloTitulo(tituloIniciar)) {
                         dados.iniciarTarefa(tituloIniciar);
+                        System.out.println("Atividade iniciada com sucesso! \n Novo status: Em andamento");
                     } else {
                         System.out.println("Tarefa não encontrada.");
                     }
@@ -193,6 +194,7 @@ public class Main {
                         System.out.println("Lista sem tarefas.");
                     } else if (dados.buscarPeloTitulo(tituloFinalizar)) {
                         dados.finalizarTarefa(tituloFinalizar);
+                        System.out.println("Atividade concluida com sucesso,Parabens! \nNovo status: Concluida.✅");
                     } else {
                         System.out.println("Tarefa não encontrada.");
                     }
