@@ -23,13 +23,6 @@ public class TarefaSimples  extends Tarefa{
 		System.out.println("Status: " + getStatus());
 		System.out.println("-----------------------------");
 	}
-
-	@Override
-	public String toString() {
-		return "TarefaSimples [titulo=" + titulo + ", descricao=" + descricao + 
-		       ", usuarioResponsavel=" + usuarioResponsavel.getNome() + 
-		       ", status=" + status + "]";
-		}
-	}
+}
 
 
