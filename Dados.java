@@ -39,6 +39,26 @@ public class Dados {
 		}
 		return false;
 	}
+
+	public boolean IniciarTarefa(String titulo) {
+		for(Tarefa tarefa: atividades) {
+			if(tarefa.getTitulo().equalsIgnoreCase(titulo)) {
+				tarefa.setStatus(Status.EM_ANDAMENTO);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean FinalizarTarefa(String titulo) {
+		for(Tarefa tarefa: atividades) {
+			if(tarefa.getTitulo().equalsIgnoreCase(titulo)) {
+				tarefa.setStatus(Status.CONCLUIDA);
+				return true;
+			}
+		}
+		return false;
+		}
 	
 	public void exibirAtividades() {
 		if (atividades.isEmpty()) {
