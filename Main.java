@@ -96,13 +96,38 @@ public class Main {
 
                 case 2: {
                     // Pesquisa por título
+                    case 2: {
+                	
+                	while (true) {
+                	
+					System.out.println("\n--- Submenu de Pesquisa ---");
+					System.out.println("1 - Pesquisar por Título");
+					System.out.println("2 - Pesquisar por Usuário");
+					System.out.println("3 - Voltar ao Menu Principal");
+					System.out.print("Escolha uma opção: ");
+
+					int opcaoPesquisa = -1;
+					try {
+						opcaoPesquisa = sc.nextInt();
+						sc.nextLine();
+					} catch (InputMismatchException e) {
+						System.out.println("Entrada inválida. Digite um número.");
+						sc.nextLine();
+						continue;
+					}
+					if (opcaoPesquisa == 3) {
+					    break;
+					}
+					switch (opcaoPesquisa) {
+                		
+					case 1: {	
                     System.out.print("Digite o título da atividade que deseja pesquisar: ");
                     String tituloPesquisa = sc.nextLine().trim();
                     boolean encontrado = false;
                     for (Tarefa atividade : dados.getAtividades()) {
                         if (atividade.getTitulo().trim().equalsIgnoreCase(tituloPesquisa)) {
                             System.out.println("-------------------------------");
-                            System.out.println("Atividade encontrada:");
+                            System.out.println("Atividade encontrada.");
                             atividade.exibirDetalhes();
                             encontrado = true;
                             break;
@@ -112,6 +137,37 @@ public class Main {
                         System.out.println("Nenhuma atividade encontrada com o título: " + tituloPesquisa);
                     }
                 } break;
+				  case 2: {
+					  System.out.print("Digite o nome ou e-mail do usuário: ");
+		                String chave = sc.nextLine().trim().toLowerCase();
+		                boolean encontrou = false;
+
+		                for (Tarefa atividade : dados.getAtividades()) {
+		                    Usuario u = atividade.getUsuarioResponsavel();
+		                    if (u.getNome().toLowerCase().contains(chave) || u.getEmail().toLowerCase().contains(chave)) {
+		                        if (!encontrou) {
+		                            System.out.println("\nTarefas encontradas para o usuário:");
+		                            encontrou = true;
+		                        }
+		                        System.out.println("\n-------------------------------");
+		                        atividade.exibirDetalhes();
+		                    }
+		                }
+
+		                if (!encontrou) {
+		                    System.out.println("Nenhuma tarefa encontrada para o usuário informado.");
+		                }
+		            } break;
+				  case 3:
+					  return;
+
+		            default:
+		                System.out.println("Opção inválida. Tente novamente.");
+					}
+						
+					}
+
+				} break;
 
                 case 3: {
                     // Exclusão de tarefa
