@@ -15,14 +15,15 @@ public class TarefaSimples  extends Tarefa{
 	public boolean estaConcluida() {
 		return getStatus() == StatusTarefa.CONCLUIDA;
 	}
+	
 	public void exibirDetalhes() {
-		System.out.println("Detalhes da Atividade Simples:");
+		System.out.println("Detalhes da Atividade com Prazo:");
 		System.out.println("Título: " + getTitulo());
 		System.out.println("Descrição: " + getDescricao());
-		System.out.println("Responsável: " + getUsuarioResponsavel().getNome());
+		System.out.println("Responsável:  \n(Nome = " + getUsuarioResponsavel().getNome() + ")" + "\n(Email do responsável: "  + getUsuarioResponsavel().getEmail() + ")");
 		System.out.println("Status: " + getStatus());
 		System.out.println("-----------------------------");
+		
 	}
 }
-
 
