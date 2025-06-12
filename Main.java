@@ -7,14 +7,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Dados dados = new Dados(); // Classe auxiliar para armazenar e manipular as atividades e usuários
+        Dados dados = new Dados(); // gerencia atividades e usuários
 
         boolean rodando = true;
         while (rodando) {
-
             // Menu principal
             System.out.println("\n----- Sistema de Gerenciamento de Atividades -----");
             System.out.println("1. (Adicionar) ✅ Nova Tarefa ");
@@ -30,7 +28,7 @@ public class Main {
             int opcao = -1;
             try {
                 opcao = sc.nextInt();
-                sc.nextLine(); // Limpa o buffer
+                sc.nextLine(); // limpa buffer
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, digite um número.");
                 sc.nextLine();
@@ -38,27 +36,26 @@ public class Main {
             }
 
             switch (opcao) {
-
                 case 1: {
                     // Adição de nova tarefa
-                    System.out.println("Digite o título da atividade: ");
+                    System.out.print("Digite o título da atividade: ");
                     String titulo = sc.nextLine().trim();
                     if (titulo.isEmpty()) {
                         System.out.println("Título não pode estar vazio.");
                         break;
                     }
 
-                    System.out.println("Digite a descrição da atividade: ");
+                    System.out.print("Digite a descrição da atividade: ");
                     String descricao = sc.nextLine().trim();
                     if (descricao.isEmpty()) {
                         System.out.println("Descrição não pode estar vazia.");
                         break;
                     }
 
-                    System.out.println("Digite o nome do responsável pela atividade: ");
+                    System.out.print("Digite o nome do responsável pela atividade: ");
                     String nome = sc.nextLine().trim();
 
-                    System.out.println("Digite o e-mail do responsável pela atividade: ");
+                    System.out.print("Digite o e-mail do responsável pela atividade: ");
                     String email = sc.nextLine().trim();
                     if (email.isEmpty()) {
                         System.out.println("E-mail não pode estar vazio.");
@@ -70,17 +67,17 @@ public class Main {
 
                     String temPrazo;
                     while (true) {
-                        System.out.println("A atividade possui prazo? (s/n): ");
+                        System.out.print("A atividade possui prazo? (s/n): ");
                         temPrazo = sc.nextLine().trim().toLowerCase();
-                        if (temPrazo.equals("s") || temPrazo.equals("n")) break;
-                        else System.out.println("Entrada inválida. Digite 's' ou 'n'.");
+                        if (temPrazo.equals("s") || temPrazo.equals("n")) {
+                            break;
+                        }
+                        System.out.println("Entrada inválida. Digite 's' ou 'n'.");
                     }
 
                     Tarefa novaAtividade;
-
-                    // Criação da tarefa com ou sem prazo
                     if (temPrazo.equals("s")) {
-                        System.out.print("Digite o prazo (formato YYYY-MM-DD): ");
+                        System.out.print("Digite o prazo (YYYY-MM-DD): ");
                         String data = sc.nextLine();
                         try {
                             LocalDate prazo = LocalDate.parse(data);
@@ -95,12 +92,11 @@ public class Main {
 
                     dados.adicionarAtividade(novaAtividade);
                     System.out.println("Atividade adicionada com sucesso!");
-                }
-                break;
+                } break;
 
                 case 2: {
                     // Pesquisa por título
-                    System.out.println("Digite o título da atividade que deseja pesquisar: ");
+                    System.out.print("Digite o título da atividade que deseja pesquisar: ");
                     String tituloPesquisa = sc.nextLine().trim();
                     boolean encontrado = false;
                     for (Tarefa atividade : dados.getAtividades()) {
@@ -115,49 +111,57 @@ public class Main {
                     if (!encontrado) {
                         System.out.println("Nenhuma atividade encontrada com o título: " + tituloPesquisa);
                     }
-                    break;
-                }
+                } break;
 
                 case 3: {
                     // Exclusão de tarefa
-                    System.out.println("Digite o título da atividade que deseja excluir: ");
+                    System.out.print("Digite o título da atividade que deseja excluir: ");
                     String tituloExclusao = sc.nextLine().trim();
                     if (dados.getAtividades().isEmpty()) {
                         System.out.println("Lista de tarefas vazia.");
+                    } else if (dados.buscarPeloTitulo(tituloExclusao)) {
+                        System.out.println("Tarefa encontrada. Excluindo...");
+                        dados.excluirTarefa(tituloExclusao);
                     } else {
-                        if (dados.buscarPeloTitulo(tituloExclusao)) {
-                            System.out.println("Tarefa encontrada. Excluindo...");
-                            dados.excluirTarefa(tituloExclusao);
-                        } else {
-                            System.out.println("Tarefa não encontrada. Nenhuma exclusão realizada.");
-                        }
+                        System.out.println("Tarefa não encontrada. Nenhuma exclusão realizada.");
                     }
-                    break;
-                }
+                } break;
 
                 case 4: {
                     // Atualização de tarefa
-                    System.out.println("Digite o título da atividade que deseja atualizar: ");
+                    System.out.print("Digite o título da atividade que deseja atualizar: ");
                     String tituloAtualizacao = sc.nextLine().trim();
                     boolean encontrado = false;
                     for (Tarefa atividade : dados.getAtividades()) {
                         if (atividade.getTitulo().trim().equalsIgnoreCase(tituloAtualizacao)) {
-                            System.out.println("Atividade encontrada:");
-                            System.out.println("Digite o novo título da atividade: ");
-                            String novoTitulo = sc.nextLine();
-                            if (!novoTitulo.isEmpty()) atividade.setTitulo(novoTitulo);
+                            System.out.println("Atividade encontrada.");
 
-                            System.out.println("Digite a nova descrição da atividade: ");
-                            String novaDescricao = sc.nextLine();
-                            if (!novaDescricao.isEmpty()) atividade.setDescricao(novaDescricao);
+                            System.out.print("Digite o novo título da atividade: ");
+                            String novoTitulo = sc.nextLine().trim();
+                            if (!novoTitulo.isEmpty()) {
+                                atividade.setTitulo(novoTitulo);
+                            }
 
-                            System.out.print("Deseja trocar o usuário responsável? (s/n): ");
-                            String trocarUsuario = sc.nextLine();
-                            if (trocarUsuario.equalsIgnoreCase("s")) {
+                            System.out.print("Digite a nova descrição da atividade: ");
+                            String novaDescricao = sc.nextLine().trim();
+                            if (!novaDescricao.isEmpty()) {
+                                atividade.setDescricao(novaDescricao);
+                            }
+
+                            String trocarUsuario;
+                            do {
+                                System.out.print("Deseja trocar as informações do usuário responsável? (s/n): ");
+                                trocarUsuario = sc.nextLine().trim().toLowerCase();
+                                if (!trocarUsuario.equals("s") && !trocarUsuario.equals("n")) {
+                                    System.out.println("Resposta inválida! Digite 's' ou 'n'.");
+                                }
+                            } while (!trocarUsuario.equals("s") && !trocarUsuario.equals("n"));
+
+                            if (trocarUsuario.equals("s")) {
                                 System.out.print("Novo nome do usuário: ");
-                                String novoNome = sc.nextLine();
+                                String novoNome = sc.nextLine().trim();
                                 System.out.print("Novo e-mail do usuário: ");
-                                String novoEmail = sc.nextLine();
+                                String novoEmail = sc.nextLine().trim();
                                 Usuario novoUsuario = new Usuario(novoNome, novoEmail);
                                 atividade.setUsuarioResponsavel(novoUsuario);
                             }
@@ -167,39 +171,38 @@ public class Main {
                             break;
                         }
                     }
-                    if (!encontrado) System.out.println("Tarefa não encontrada.");
-                    break;
-                }
+                    if (!encontrado) {
+                        System.out.println("Tarefa não encontrada.");
+                    }
+                } break;
 
                 case 5: {
                     // Iniciar tarefa
-                    System.out.println("Digite o título da tarefa para iniciá-la: ");
+                    System.out.print("Digite o título da tarefa para iniciá-la: ");
                     String tituloIniciar = sc.nextLine().trim();
                     if (dados.getAtividades().isEmpty()) {
                         System.out.println("Lista sem tarefas.");
                     } else if (dados.buscarPeloTitulo(tituloIniciar)) {
                         dados.iniciarTarefa(tituloIniciar);
-                        System.out.println("Atividade iniciada com sucesso! \n Novo status: Em andamento");
+                        System.out.println("Atividade iniciada! Status: Em andamento");
                     } else {
                         System.out.println("Tarefa não encontrada.");
                     }
-                    break;
-                }
+                } break;
 
                 case 6: {
                     // Finalizar tarefa
-                    System.out.println("Digite o título da tarefa para concluí-la: ");
+                    System.out.print("Digite o título da tarefa para concluí-la: ");
                     String tituloFinalizar = sc.nextLine().trim();
                     if (dados.getAtividades().isEmpty()) {
                         System.out.println("Lista sem tarefas.");
                     } else if (dados.buscarPeloTitulo(tituloFinalizar)) {
                         dados.finalizarTarefa(tituloFinalizar);
-                        System.out.println("Atividade concluida com sucesso,Parabens! \nNovo status: Concluida.✅");
+                        System.out.println("Atividade concluída com sucesso! Status: Concluída.");
                     } else {
                         System.out.println("Tarefa não encontrada.");
                     }
-                    break;
-                }
+                } break;
 
                 case 7: {
                     // Listagem de tarefas com filtro
@@ -222,42 +225,39 @@ public class Main {
                             continue;
                         }
 
-                        if (opcaoListar == 5) break;
+                        if (opcaoListar == 5) {
+                            break;
+                        }
 
                         boolean encontrou = false;
-
                         for (Tarefa atividade : dados.getAtividades()) {
-                            boolean exibir = false;
-                            StatusTarefa status = atividade.getStatus();
-
-                            switch (opcaoListar) {
-                                case 1: exibir = true; break;
-                                case 2: exibir = status == StatusTarefa.PENDENTE; break;
-                                case 3: exibir = status == StatusTarefa.EM_ANDAMENTO; break;
-                                case 4: exibir = status == StatusTarefa.CONCLUIDA; break;
-                                default: System.out.println("Opção inválida."); continue;
-                            }
-
+                            boolean exibir = switch (opcaoListar) {
+                                case 1 -> true;
+                                case 2 -> atividade.getStatus() == StatusTarefa.PENDENTE;
+                                case 3 -> atividade.getStatus() == StatusTarefa.EM_ANDAMENTO;
+                                case 4 -> atividade.getStatus() == StatusTarefa.CONCLUIDA;
+                                default -> {
+                                    System.out.println("Opção inválida.");
+                                    yield false;
+                                }
+                            };
                             if (exibir) {
                                 encontrou = true;
                                 System.out.println("\n-------------------------------");
                                 atividade.exibirDetalhes();
                             }
                         }
-
                         if (!encontrou) {
                             System.out.println("Nenhuma atividade encontrada.");
                         }
                     }
-                    break;
-                }
+                } break;
 
                 case 8: {
                     System.out.println("Saindo do sistema...");
                     sc.close();
                     rodando = false;
-                    break;
-                }
+                } break;
 
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
