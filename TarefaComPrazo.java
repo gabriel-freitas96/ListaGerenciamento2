@@ -28,7 +28,7 @@ public class TarefaComPrazo extends Tarefa {
 		System.out.println("Detalhes da Atividade com Prazo:");
 		System.out.println("Título: " + getTitulo());
 		System.out.println("Descrição: " + getDescricao());
-		System.out.println("Responsável:  \n(Nome = " + getUsuarioResponsavel().getNome() + ")" + "\n(Email do responsável: "  + getUsuarioResponsavel().getEmail() + ")");
+		System.out.println("Responsável: " + getUsuarioResponsavel());
 		System.out.println("Status: " + getStatus());
 		System.out.println("Prazo: " + prazo);
 		System.out.println("-----------------------------");
