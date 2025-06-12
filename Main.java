@@ -61,9 +61,8 @@ public class Main {
                         break;
                     }
 
-                    Usuario usuario = new Usuario(nome, email);
-                    dados.adicionarUsuario(usuario);
-
+                    Usuario usuarioResponsavel = new Usuario(nome, email);
+                   
                     String temPrazo;
                     while (true) {
                         System.out.print("A atividade possui prazo? (s/n): ");
@@ -80,13 +79,13 @@ public class Main {
                         String data = sc.nextLine();
                         try {
                             LocalDate prazo = LocalDate.parse(data);
-                            novaAtividade = new TarefaComPrazo(titulo, descricao, usuario, prazo);
+                            novaAtividade = new TarefaComPrazo(titulo, descricao, usuarioResponsavel, prazo);
                         } catch (DateTimeParseException e) {
                             System.out.println("Formato de data inválido. Atividade não cadastrada.");
                             break;
                         }
                     } else {
-                        novaAtividade = new TarefaSimples(titulo, descricao, usuario);
+                        novaAtividade = new TarefaSimples(titulo, descricao, usuarioResponsavel);
                     }
 
                     dados.adicionarAtividade(novaAtividade);
@@ -317,4 +316,4 @@ public class Main {
             }
         }
     }
-}
+
