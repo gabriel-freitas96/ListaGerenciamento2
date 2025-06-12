@@ -95,8 +95,6 @@ public class Main {
 
                 case 2: {
                     // Pesquisa por título
-                    case 2: {
-                	
                 	while (true) {
                 	
 					System.out.println("\n--- Submenu de Pesquisa ---");
