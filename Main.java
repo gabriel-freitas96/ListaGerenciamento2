@@ -304,11 +304,17 @@ public class Main {
                                 case 4 -> atividade.getStatus() == StatusTarefa.CONCLUIDA;
                                 default -> false;
                             };
-
+                            
+  
                             if (exibir) {
                                 encontrou = true;
                                 System.out.println("\n-------------------------------");
                                 atividade.exibirDetalhes();
+                                
+                                String situacaoPrazo = atividade.verificarSituacaoPrazo();
+                                if (!situacaoPrazo.isEmpty()) {
+                                    System.out.println("Situação do Prazo: " + situacaoPrazo);
+                                }
                             }
                         }
 
@@ -332,4 +338,4 @@ public class Main {
             }
         }
     }
-
+}
