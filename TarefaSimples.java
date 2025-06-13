@@ -5,16 +5,7 @@ public class TarefaSimples  extends Tarefa{
 	public TarefaSimples(String titulo, String descricao, Usuario  usuarioResponsavel) {
 		super(titulo, descricao, usuarioResponsavel);
 	}
-		
 	@Override
-	public boolean estaAtrasada() {
-		return false;
-	}
-		
-	public boolean estaConcluida() {
-		return getStatus() == StatusTarefa.CONCLUIDA;
-	}
-	
 	public void exibirDetalhes() {
 		System.out.println("Detalhes da Atividade com Prazo:");
 		System.out.println("Título: " + getTitulo());
@@ -25,5 +16,4 @@ public class TarefaSimples  extends Tarefa{
 		
 	}
 }
-
 
