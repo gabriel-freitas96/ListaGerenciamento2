@@ -17,13 +17,23 @@ public class TarefaComPrazo extends Tarefa {
 	public void setPrazo(LocalDate prazo) {
 		this.prazo = prazo;
 	}
+	
 	@Override
-	public boolean estaAtrasada() {
-		return getStatus() != StatusTarefa.CONCLUIDA && LocalDate.now().isAfter(prazo);
+	public String verificarSituacaoPrazo() {
+	    LocalDate hoje = LocalDate.now();
+
+	    if (getStatus() == StatusTarefa.CONCLUIDA && hoje.isBefore(prazo)) {
+	        return "ADIANTADA";
+	    } else if (hoje.isAfter(prazo)) {
+	        return "VENCIDA";
+	    } else if (hoje.isEqual(prazo)) {
+	        return "ENTREGA HOJE";
+	    } else {
+	        return "NO PRAZO";
+	    }
 	}
-	public boolean estaConcluida() {
-		return getStatus() == StatusTarefa.CONCLUIDA;
-	}
+	
+	@Override
 	public void exibirDetalhes() {
 		System.out.println("Detalhes da Atividade com Prazo:");
 		System.out.println("Título: " + getTitulo());
