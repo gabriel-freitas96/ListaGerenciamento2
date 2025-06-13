@@ -12,6 +12,7 @@ public abstract class Tarefa {
 		this.usuarioResponsavel = usuarioResponsavel;
 		this.status = StatusTarefa.PENDENTE;
 	}
+
 	public Usuario getUsuarioResponsavel() {
 		return usuarioResponsavel;
 	}
@@ -41,11 +42,13 @@ public abstract class Tarefa {
 	public StatusTarefa getStatus() {
 		return status;
 	}
-	public abstract boolean estaAtrasada();
-	public abstract boolean estaConcluida();
+	
+	public String verificarSituacaoPrazo() {
+	    return ""; 
+	}
 	
 	public abstract void exibirDetalhes();
 	
 	
 }
-		
+			
