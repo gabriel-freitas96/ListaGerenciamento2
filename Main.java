@@ -270,10 +270,10 @@ public class Main {
                         int opcaoListar = -1;
                         try {
                             opcaoListar = sc.nextInt();
-                            sc.nextLine();
+                            sc.nextLine(); 
                         } catch (InputMismatchException e) {
                             System.out.println("Entrada inválida. Digite um número.");
-                            sc.nextLine();
+                            sc.nextLine(); 
                             continue;
                         }
 
@@ -281,27 +281,43 @@ public class Main {
                             break;
                         }
 
+                        if (opcaoListar < 1 || opcaoListar > 5) {
+                            System.out.println("Opção inválida. Tente novamente.");
+                            continue;
+                        }
+
+                        
+                        switch (opcaoListar) {
+                            case 1 -> System.out.println("\n--- Todas as Tarefas ---");
+                            case 2 -> System.out.println("\n--- Tarefas Pendentes ---");
+                            case 3 -> System.out.println("\n--- Tarefas em Andamento ---");
+                            case 4 -> System.out.println("\n--- Tarefas Concluídas ---");
+                        }
+
                         boolean encontrou = false;
+
                         for (Tarefa atividade : dados.getAtividades()) {
                             boolean exibir = switch (opcaoListar) {
                                 case 1 -> true;
                                 case 2 -> atividade.getStatus() == StatusTarefa.PENDENTE;
                                 case 3 -> atividade.getStatus() == StatusTarefa.EM_ANDAMENTO;
                                 case 4 -> atividade.getStatus() == StatusTarefa.CONCLUIDA;
-                                default -> {
-                                    System.out.println("Opção inválida.");
-                                    yield false;
-                                }
+                                default -> false;
                             };
+
                             if (exibir) {
                                 encontrou = true;
                                 System.out.println("\n-------------------------------");
                                 atividade.exibirDetalhes();
                             }
                         }
+
                         if (!encontrou) {
                             System.out.println("Nenhuma atividade encontrada.");
                         }
+
+                        System.out.println("\nListagem finalizada. Pressione ENTER para voltar ao submenu.");
+                        sc.nextLine();
                     }
                 } break;
 
